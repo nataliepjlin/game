@@ -1,31 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Rock Paper Scissors</title>
-  <link rel="stylesheet" href="styles/12-rockpapsciss.css">
+  <title>Todo</title>
+  <link rel="stylesheet" href="styles/11-todo.css">
 </head>
 <body>
-  <h1>Rock Paper Scissors</h1>
-  <button class="move-btn js-rock"><img src="images/rock-emoji.png" class="move-icon"></button>
-  
-  <button class="move-btn js-paper"><img src="images/paper-emoji.png" class="move-icon"></button>
+  <div class="todo-input-grid">
+    <input placeholder="Todo name:" class="js-input">
+    <input type="date" class="js-date">
+    <button class="add-btn js-add">Add</button>
+    
+    <div class="js-todo todo-grid"></div>
+  </div>
 
-  <button class="move-btn js-scissors"><img src="images/scissors-emoji.png" class="move-icon"></button>
-
-  <p class="js-result res"></p>
-  <p class="js-moves"></p>
-  <p class="js-score score"></p>
-
-  <button onclick="
-    score.wins= 0;
-    score.losses= 0;
-    score.ties= 0;
-    updateScoreElement();
-    localStorage.removeItem('score');
-  " class="reset-btn">Restart Game</button>
-  <button onclick="autoPlay();"
-  class="auto-play-btn js-auto">Auto Play</button>
-  
-  <script src="scripts/12-rockpapsciss.js"></script>
+  <script src="scripts/12-todo.js"></script>
 </body>
 </html>

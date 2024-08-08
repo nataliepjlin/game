@@ -22,27 +22,43 @@ function autoPlay(){
     document.querySelector('.js-auto').innerText = 'Auto Play';
   }
 }
+function resetCheck(){
+  document.querySelector('.js-ms').innerHTML = `Are you sure you want to reset the score? <button class="js-clear-ms js-yes">Yes</button> <button class="js-clear-ms js-no">No</button>`;
 
+  document.querySelectorAll('.js-clear-ms').forEach((btn)=>{
+    console.log(btn.innerHTML);
+    btn.addEventListener('click', ()=>{
+        let ms = document.querySelector('.js-ms');
+        console.log(ms);
+        ms.innerHTML = '';
+    })
+  });
+  document.querySelector('.js-yes').addEventListener('click', ()=>reset());
+}
+function reset(){
+  score.wins= 0;
+  score.losses= 0;
+  score.ties= 0;
+  updateScoreElement();
+  localStorage.removeItem('score');
+}
 document.querySelector('.js-rock')
-  .addEventListener('click', ()=>{
-    play('rock');
-  });
+  .addEventListener('click', ()=>play('rock'));
 document.querySelector('.js-paper')
-  .addEventListener('click', ()=>{
-    play('paper');
-  });
+  .addEventListener('click', ()=>play('paper'));
 document.querySelector('.js-scissors')
-  .addEventListener('click', ()=>{
-    play('scissors');
-  });
+  .addEventListener('click', ()=>play('scissors'));
 document.body.addEventListener('keydown', (event)=>{
   const k = event.key;
   if(k === 'r') play('rock');
   else if(k === 'p') play('paper');
   else if(k == 's') play('scissors');
+  else if(k == 'a') autoPlay();
+  else if(k == 'Backspace') resetCheck();
   else document.querySelector('.js-result').innerText = `You picked '${k}', which is an undefined move :(`;
 })
-
+document.querySelector('.js-auto').addEventListener('click', ()=>autoPlay());
+document.querySelector('.js-reset').addEventListener('click', ()=>resetCheck());
 function play(playerMove){
   const comp = pickMove();
 
