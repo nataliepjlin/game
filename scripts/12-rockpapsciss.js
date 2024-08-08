@@ -8,11 +8,11 @@ updateScoreElement();
 let isAutoPlaying = false, intervalID;
 function autoPlay(){
   if(!isAutoPlaying){
-    intervalID = setInterval(function(){
+    intervalID = setInterval(()=>{
       play(pickMove());
     }, 1200);
     isAutoPlaying = true;
-    setTimeout(function(){
+    setTimeout(()=>{
       document.querySelector('.js-auto').innerText = 'Pause';
     }, 1200);
   }
@@ -22,6 +22,26 @@ function autoPlay(){
     document.querySelector('.js-auto').innerText = 'Auto Play';
   }
 }
+
+document.querySelector('.js-rock')
+  .addEventListener('click', ()=>{
+    play('rock');
+  });
+document.querySelector('.js-paper')
+  .addEventListener('click', ()=>{
+    play('paper');
+  });
+document.querySelector('.js-scissors')
+  .addEventListener('click', ()=>{
+    play('scissors');
+  });
+document.body.addEventListener('keydown', (event)=>{
+  const k = event.key;
+  if(k === 'r') play('rock');
+  else if(k === 'p') play('paper');
+  else if(k == 's') play('scissors');
+  else document.querySelector('.js-result').innerText = `You picked '${k}', which is an undefined move :(`;
+})
 
 function play(playerMove){
   const comp = pickMove();
